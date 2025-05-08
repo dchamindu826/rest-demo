@@ -1,0 +1,46 @@
+/* src/components/UI/GlassmorphismPanel.module.css */
+.glassPanel {
+    background: var(--glass-bg);
+    backdrop-filter: blur(var(--glass-blur));
+    -webkit-backdrop-filter: blur(var(--glass-blur)); /* Safari */
+    border-radius: var(--border-radius);
+    border: var(--glass-border);
+    padding: clamp(1.5rem, 4vw, 3rem);
+    position: relative; /* For potential absolute positioned children */
+    overflow: hidden; /* Ensure blur doesn't leak */
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.1 ); /* Subtle shadow */
+  
+    /* Add a subtle glow effect */
+    /* position: relative; */
+  }
+  
+  .glassPanel::before {
+      content: '';
+      position: absolute;
+      inset: -1px; /* Cover the border */
+      border-radius: inherit;
+      padding: 1px; /* Stroke width */
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.05));
+      -webkit-mask:
+          linear-gradient(#fff 0 0) content-box,
+          linear-gradient(#fff 0 0);
+      mask:
+          linear-gradient(#fff 0 0) content-box,
+          linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      pointer-events: none; /* Allow interaction with the panel */
+  }
+  
+  /* Optional: Add inner glow/gradient */
+  /* .glassPanel::after {
+      content: '';
+      position: absolute;
+      top: 10%; left: 10%;
+      width: 80%; height: 80%;
+      background: var(--gradient-glow);
+      filter: blur(50px);
+      opacity: 0.5;
+      z-index: -1;
+      pointer-events: none;
+  } */

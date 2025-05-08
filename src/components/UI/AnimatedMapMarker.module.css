@@ -1,0 +1,30 @@
+/* src/components/UI/AnimatedMapMarker.module.css */
+.markerWrapper {
+    position: relative;
+    width: 50px; /* Adjust size as needed */
+    height: 70px;
+    display: flex;
+    align-items: flex-end; /* Align icon bottom */
+    justify-content: center;
+     will-change: transform, opacity; /* Performance hint */
+}
+
+.markerIcon {
+    font-size: 50px; /* Icon size */
+    color: var(--color-secondary); /* Neon Orange */
+    filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.3));
+    z-index: 1;
+}
+
+.markerShadow {
+    position: absolute;
+    bottom: 5px; /* Position below the icon base */
+    width: 40%;
+    height: 5px;
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 50%;
+    filter: blur(3px);
+    transform-origin: center;
+    z-index: 0;
+    /* GSAP could animate scaleX based on y position for more realism */
+}

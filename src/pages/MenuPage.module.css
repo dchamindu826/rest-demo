@@ -1,0 +1,59 @@
+/* src/pages/MenuPage.module.css */
+.menuPage {
+    background: linear-gradient(180deg, rgba(10, 10, 10, 1) 0%, rgba(18, 18, 18, 1) 100%);
+    min-height: 100vh;
+}
+
+.pageTitle {
+    text-align: center;
+    color: var(--color-primary);
+    margin-bottom: 0.5rem;
+}
+.pageSubtitle {
+    text-align: center;
+    color: var(--color-text);
+    opacity: 0.8;
+    font-size: 1.2rem;
+    margin-bottom: 4rem;
+    font-weight: 300;
+}
+
+.menuCategory {
+    margin-bottom: 4rem;
+}
+
+.categoryTitle {
+    color: var(--color-highlight);
+    margin-bottom: 2.5rem;
+    text-align: left;
+    position: relative;
+    padding-bottom: 0.5rem;
+    display: inline-block; /* Keep underline contained */
+}
+.categoryTitle::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 50%;
+    height: 3px;
+    background: var(--gradient-secondary);
+    border-radius: 2px;
+}
+
+
+.menuGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); /* Responsive grid */
+    gap: clamp(1.5rem, 4vw, 2.5rem);
+}
+
+@media (max-width: 768px) {
+    .pageTitle { font-size: clamp(2.5rem, 10vw, 4rem); }
+    .categoryTitle { text-align: center; display: block; }
+    .categoryTitle::after { left: 25%; } /* Center underline */
+    .menuGrid {
+         grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+         gap: 1.5rem;
+    }
+}

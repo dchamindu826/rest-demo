@@ -1,0 +1,10 @@
+/* src/components/Animation/AnimatedText.module.css */
+.animatedTextWrapper .char, .animatedTextWrapper .word {
+    display: inline-block; /* Crucial for transform animations */
+    will-change: transform, opacity; /* Performance hint */
+}
+/* Add any specific container styles if needed */
+.animatedTextWrapper {
+    display: block; /* Or inline-block as needed */
+    overflow: hidden; /* Hide parts of letters during animation */
+}

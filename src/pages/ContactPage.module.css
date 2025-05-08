@@ -1,0 +1,110 @@
+/* src/pages/ContactPage.module.css */
+.contactPage {
+    background: var(--color-background);
+     min-height: 100vh;
+  }
+  
+  .pageTitle {
+      text-align: center;
+      color: var(--color-secondary); /* Use Neon Orange */
+      margin-bottom: 0.5rem;
+  }
+   .pageSubtitle {
+      text-align: center;
+      color: var(--color-text);
+      opacity: 0.8;
+      font-size: 1.2rem;
+      margin-bottom: 4rem;
+      font-weight: 300;
+  }
+  
+  
+  .contactLayout {
+      display: grid;
+      grid-template-columns: 1fr 1.1fr; /* Left | Right column ratio */
+      gap: clamp(2rem, 6vw, 4rem);
+  }
+  
+   .contactInfo, .mapSection, .contactFormWrapper {
+       margin-bottom: 3rem;
+       background: rgba(25, 25, 25, 0.4);
+       padding: clamp(1.5rem, 4vw, 2.5rem);
+       border-radius: var(--border-radius);
+       border: 1px solid rgba(255, 255, 255, 0.08);
+       box-shadow: 0 5px 20px rgba(0,0,0, 0.1);
+   }
+    .contactInfo ul {
+       list-style: none;
+       padding: 0;
+       margin-top: 1.5rem;
+   }
+    .contactInfo li {
+       display: flex;
+       align-items: center;
+       margin-bottom: 1rem;
+       font-size: 1rem;
+       line-height: 1.6;
+       color: var(--color-text);
+       opacity: 0.9;
+   }
+   .infoIcon {
+       color: var(--color-secondary);
+       margin-right: 1rem;
+       font-size: 1.2rem;
+       flex-shrink: 0; /* Prevent icon from shrinking */
+   }
+    .contactInfo a {
+       color: var(--color-secondary);
+       transition: color 0.3s ease;
+       word-break: break-word; /* Prevent long emails/addresses from breaking layout */
+   }
+    .contactInfo a:hover {
+       color: var(--color-highlight);
+   }
+  
+  .infoTitle {
+      color: var(--color-highlight);
+      margin-bottom: 1.5rem;
+      font-size: 1.6rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid rgba(var(--color-secondary-rgb, 255, 140, 0), 0.3);
+      display: inline-block;
+  }
+  
+  
+  .mapPlaceholder {
+      width: 100%;
+      aspect-ratio: 16 / 9; /* Common map aspect ratio */
+      background: linear-gradient(45deg, #333, #444); /* Dark placeholder */
+      border-radius: calc(var(--border-radius) - 5px); /* Slightly smaller radius */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden; /* Ensure marker doesn't overflow bounds */
+      border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  
+  
+  .contactFormWrapper {
+       background: rgba(25, 25, 25, 0.6); /* Slightly different bg for form */
+  }
+  
+ 
+  .contactFormWrapper .reservationForm .inputLine {
+       background: var(--gradient-secondary); /* Use different gradient */
+  }
+  
+  
+  @media (max-width: 992px) {
+      .contactLayout {
+          grid-template-columns: 1fr; /* Stack columns */
+      }
+       
+  }
+  
+   @media (max-width: 768px) {
+       .contactInfo li { font-size: 0.95rem; }
+       .infoIcon { margin-right: 0.8rem; font-size: 1.1rem; }
+       .infoTitle { font-size: 1.4rem; }
+   }

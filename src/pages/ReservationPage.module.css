@@ -1,0 +1,138 @@
+/* src/pages/ReservationPage.module.css */
+.reservationPage {
+    min-height: 100vh;
+    display: flex;
+    align-items: center; /* Vertically center the panel */
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .reservationPanel {
+    max-width: 650px;
+    margin: auto; /* Horizontal centering */
+    position: relative; /* Ensure content is above potential background elements */
+    z-index: 1;
+    text-align: center;
+  }
+  
+  .reservationPanel h2 {
+      color: var(--color-highlight);
+      margin-bottom: 1rem;
+  }
+  .formIntro {
+      margin-bottom: 2.5rem;
+      opacity: 0.8;
+      font-size: 1.1rem;
+  }
+  
+  
+  .reservationForm {
+      display: flex;
+      flex-direction: column;
+      gap: 1.8rem;
+      text-align: left;
+  }
+  
+  .formGroup {
+      position: relative; /* For absolute label positioning & line */
+  }
+  
+  .formLabel {
+      position: absolute;
+      top: 10px; /* Adjust based on input padding */
+      left: 0;
+      color: var(--color-text);
+      opacity: 0.7;
+      transition: all 0.3s ease;
+      pointer-events: none; /* Allow clicking through label */
+      transform-origin: left top;
+  }
+  
+  .formInput {
+      width: 100%;
+      padding: 10px 0; /* Padding top/bottom */
+      background-color: transparent;
+      border: none;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.2); /* Subtle base line */
+      color: var(--color-text);
+      font-size: 1rem;
+      outline: none;
+      position: relative;
+      z-index: 1; /* Ensure input is clickable */
+  }
+   .formInput:-webkit-autofill,
+   .formInput:-webkit-autofill:hover,
+   .formInput:-webkit-autofill:focus,
+   .formInput:-webkit-autofill:active {
+      -webkit-box-shadow: 0 0 0 30px var(--glass-bg) inset !important; /* Match panel bg */
+      -webkit-text-fill-color: var(--color-text) !important; /* Override autofill text color */
+      caret-color: var(--color-primary); /* Ensure caret color matches */
+      transition: background-color 5000s ease-in-out 0s; /* Prevent quick flash */
+      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  }
+  
+  
+  .inputLine {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      height: 2px;
+      width: 100%;
+      background: var(--gradient-primary);
+      transform: scaleX(0); /* Initial state - animated by GSAP */
+      transform-origin: left; /* Animated by GSAP */
+      transition: transform 0.4s ease; /* CSS fallback if needed */
+      pointer-events: none;
+  }
+  
+  .formRow {
+      display: flex;
+      gap: 1.5rem;
+  }
+  .formRow .formGroup {
+      flex: 1; /* Each group takes equal space */
+  }
+  
+  /* Basic styling for date/time input appearance */
+  .formInput[type="date"],
+  .formInput[type="time"] {
+      cursor: text; /* Indicate text input */
+  }
+   /* Style calendar/clock icons (browser dependent) */
+  .formInput[type="date"]::-webkit-calendar-picker-indicator,
+  .formInput[type="time"]::-webkit-calendar-picker-indicator {
+       filter: invert(0.8) brightness(1.5) sepia(1) hue-rotate(250deg) saturate(5); /* Style icon to match theme */
+       cursor: pointer;
+       opacity: 0.8;
+       transition: opacity 0.3s ease;
+  }
+   .formInput[type="date"]::-webkit-calendar-picker-indicator:hover,
+  .formInput[type="time"]::-webkit-calendar-picker-indicator:hover {
+      opacity: 1;
+  }
+  
+  
+  .formTextarea {
+      resize: vertical; /* Allow vertical resize */
+      min-height: 60px;
+  }
+  
+  .submitButtonWrapper {
+      text-align: center;
+      margin-top: 1rem;
+  }
+  
+  @media (max-width: 600px) {
+      .formRow {
+          flex-direction: column;
+          gap: 1.8rem; /* Match main gap */
+      }
+       .reservationPanel {
+           padding: clamp(1rem, 5vw, 2rem); /* Adjust padding */
+       }
+       .formIntro {
+           margin-bottom: 2rem;
+           font-size: 1rem;
+       }
+  }

@@ -1,0 +1,276 @@
+/* src/components/Layout/Header.module.css */
+
+.header {
+    position: fixed; /* Page එකත් එක්ක scroll වෙන්නේ නැතුව උඩම තියෙන්න */
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000; /* අනිත් හැම element එකකටම උඩින් තියෙන්න */
+    padding: 1rem 0;
+    /* අලුත් global.css එකේ පාට අනුව background එක හදමු */
+    background: rgba(13, 17, 23, 0.7); /* Dark background with transparency */
+    backdrop-filter: blur(10px); /* Background එක blur කරනවා */
+    -webkit-backdrop-filter: blur(10px); /* Safari වලට */
+    border-bottom: 1px solid var(--color-border); /* Global border color එක */
+    transition: background-color 0.3s ease, padding 0.3s ease;
+  }
+  
+  /* Optional: Scroll කරනකොට header එකේ background එක තව ටිකක් dark කරන්න */
+  /* මේ class එක JavaScript වලින් scroll event එකකදී add/remove කරන්න ඕන */
+  .header.scrolled {
+      background: rgba(13, 17, 23, 0.9); /* Darker on scroll */
+      padding: 0.8rem 0;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  }
+  
+  /* Header එක ඇතුලේ content එක center කරන container එක */
+  .headerContent {
+    display: flex;
+    justify-content: space-between; /* Logo එකයි Nav එකයි දෙපැත්තට දාන්න */
+    align-items: center; /* උස අතට මැදට align කරන්න */
+  }
+  
+  /* Logo එකේ style එක */
+  .logo {
+    font-family: var(--font-display); /* Heading font එක */
+    font-size: clamp(1.5rem, 4vw, 1.8rem); /* Responsive font size */
+    font-weight: 800;
+    color: var(--color-text);
+    text-decoration: none;
+    z-index: 1005; /* Overlay/Menu එකට උඩින් තියෙන්න */
+  }
+  .logoHighlight {
+      color: var(--color-primary); /* global.css එකෙන් එන primary color */
+  }
+  
+  /* --- Desktop Navigation Styles --- */
+  .nav {
+    /* Desktop එකේ nav එක */
+  }
+  .nav ul {
+    list-style: none;
+    display: flex; /* Links ටික තිරස් අතට තියන්න */
+    align-items: center;
+    gap: clamp(1rem, 3vw, 1.8rem); /* Links අතර ඉඩ */
+    margin: 0;
+    padding: 0;
+  }
+  .navLink {
+    color: var(--color-text);
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 400;
+    position: relative;
+    padding: 0.5rem 0.1rem; /* Padding for hover area */
+    transition: color 0.3s ease;
+  }
+  /* Link එක යටින් එන line එකේ animation එක */
+  .navLink::after {
+      content: '';
+      position: absolute;
+      bottom: -2px; /* Line එක link එකට යටින් තියන්න */
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: var(--gradient-primary); /* global.css එකෙන් එන gradient එක */
+      transform: scaleX(0);
+      transform-origin: right;
+      transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+  }
+  /* Hover වෙනකොට සහ Active (current page) එකේදී */
+  .navLink:hover,
+  .navLink.active {
+    color: var(--color-primary);
+  }
+  .navLink:hover::after,
+  .navLink.active::after {
+       transform: scaleX(1);
+       transform-origin: left;
+  }
+  .reservationLink {
+      margin-left: 1rem; /* අනිත් link වලින් පොඩි ඉඩක් */
+  }
+  /* Desktop Reserve Button */
+  .reserveButton {
+       padding: 0.6rem 1.5rem;
+       border: 1px solid var(--color-primary);
+       color: var(--color-primary);
+       background-color: transparent;
+       font-size: 0.9rem;
+       font-weight: 500;
+       border-radius: 50px;
+       cursor: pointer;
+       transition: all 0.3s ease;
+       text-decoration: none;
+       white-space: nowrap; /* Button text එක කැඩෙන්නේ නැතුව තියන්න */
+  }
+  .reserveButton:hover {
+      background: var(--color-primary);
+      color: var(--color-background); /* global.css එකේ background color එක */
+      box-shadow: 0 0 15px rgba(var(--color-primary-rgb), 0.4);
+  }
+  
+  /* --- Hamburger Icon Styles --- */
+  .hamburgerIcon {
+    display: none; /* Default විදියට Desktop එකේ හංගන්න */
+    background: none;
+    border: none;
+    color: var(--color-text);
+    font-size: 1.8rem;
+    cursor: pointer;
+    z-index: 1005; /* Mobile menu එකටත් උඩින් */
+    padding: 5px;
+    line-height: 1; /* Icon එක හරියට align වෙන්න */
+  }
+  
+  /* --- Mobile Menu Styles --- */
+  .mobileMenu {
+    position: fixed; /* Screen එකට fix වෙන්න */
+    top: 0;
+    right: 0;
+    width: clamp(280px, 70vw, 350px); /* Responsive width */
+    height: 100vh; /* Full height */
+    background-color: var(--color-dark-1); /* අලුත් global.css එකේ dark color එක */
+    z-index: 1004; /* Hamburger එකට යටින්, Overlay එකට උඩින් */
+    padding: 5rem 2rem 2rem 2rem; /* උඩින් header එකට ඉඩ තියලා padding */
+    box-shadow: -5px 0 25px rgba(0, 0, 0, 0.3); /* Shadow එක */
+    transform: translateX(100%); /* Default විදියට screen එකෙන් එලියට දාලා */
+    opacity: 0;
+    visibility: hidden;
+    transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1), opacity 0.4s ease, visibility 0.4s;
+    overflow-y: auto; /* Links ගොඩක් තිබ්බොත් scroll වෙන්න */
+  }
+  
+  /* Mobile menu එක open වුනාම */
+  .mobileMenu.open {
+    transform: translateX(0); /* Screen එක ඇතුලට ගන්න */
+    opacity: 1;
+    visibility: visible;
+  }
+  
+  /* Mobile menu එක ඇතුලේ navigation එක */
+  .mobileMenu nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column; /* Links උඩ ඉඳන් පහලට */
+    gap: 0.5rem; /* Links අතර පොඩි ඉඩක් */
+  }
+  
+  .mobileMenu nav ul li {
+    width: 100%;
+    border-bottom: 1px solid var(--color-border); /* Links වෙන් කරන්න line එකක් */
+  }
+  .mobileMenu nav ul li:last-child {
+      border-bottom: none; /* අන්තිම link එකට line එක එපා */
+  }
+  
+  .mobileMenu nav ul a {
+    color: var(--color-text);
+    text-decoration: none;
+    font-size: 1.1rem; /* Mobile එකේ links වල font size එක */
+    font-weight: 400;
+    display: block;
+    padding: 1rem 0.5rem; /* Click area එක ලොකු කරන්න */
+    transition: color 0.3s ease, background-color 0.3s ease;
+  }
+  
+  .mobileMenu nav ul a:hover,
+  .mobileMenu nav ul a.active {
+    color: var(--color-primary);
+    background-color: rgba(var(--color-primary-rgb), 0.05); /* Hover/Active එකට පොඩි background එකක් */
+  }
+  
+  /* Mobile Reserve Button */
+  .mobileReserveButton {
+      display: block;
+      text-align: center;
+      margin-top: 2rem; /* අනිත් links වලින් පස්සේ ඉඩක් */
+      padding: 0.9rem 1.5rem;
+      border: 1px solid var(--color-primary);
+      color: var(--color-primary);
+      background-color: transparent;
+      font-size: 1rem;
+      font-weight: 500;
+      border-radius: 50px;
+      transition: all 0.3s ease;
+  }
+  .mobileReserveButton:hover {
+       background: var(--color-primary);
+       color: var(--color-background);
+  }
+  
+  
+  /* Mobile Menu Close Icon */
+  .closeIcon {
+    position: absolute;
+    top: 1.2rem; /* උඩින් ඉඩ */
+    right: 1.5rem; /* දකුණෙන් ඉඩ */
+    background: none;
+    border: none;
+    color: var(--color-text);
+    font-size: 2rem;
+    cursor: pointer;
+    line-height: 1;
+    padding: 5px;
+  }
+  
+  /* Background Overlay */
+  .menuOverlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.6); /* Background එක dim කරනවා */
+      z-index: 1003; /* Menu එකට යටින් */
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.4s ease, visibility 0.4s;
+  }
+  /* Menu එක open වුනාම overlay එක පෙන්වන්න */
+  /* .mobileMenu.open + .menuOverlay doesn't work because overlay is not sibling */
+  /* We can control overlay via parent state in CSS if needed, or just use JS state */
+  .header.menuOpen .menuOverlay { /* If we add menuOpen class to header */
+      opacity: 1;
+      visibility: visible;
+  }
+  /* Simpler: Use the JS approach as coded in Header.jsx - render overlay only when needed */
+  .menuOverlay { /* Adjust styles for JS rendering */
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.6);
+      z-index: 1003;
+      /* Transitions handled by React conditional rendering */
+  }
+  
+  
+  /* --- Media Query - Mobile වලදී වෙනස්කම් --- */
+  @media (max-width: 768px) {
+    .nav {
+      display: none; /* Desktop nav එක සම්පූර්ණයෙන් හංගනවා */
+    }
+    .hamburgerIcon {
+      display: block; /* Hamburger icon එක පෙන්වනවා */
+    }
+  }
+  
+  /* Optional: Adjust header padding on smaller screens */
+  @media (max-width: 480px) {
+      .header {
+          padding: 0.8rem 0;
+      }
+      .logo {
+          font-size: 1.4rem;
+      }
+      .hamburgerIcon {
+          font-size: 1.6rem;
+      }
+       .mobileMenu {
+           width: 90%; /* තව පොඩි screen වල menu width එක */
+       }
+  }

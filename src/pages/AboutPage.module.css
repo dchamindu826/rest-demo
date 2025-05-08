@@ -1,0 +1,166 @@
+/* src/pages/AboutPage.module.css */
+.aboutPage {
+    background: var(--color-background);
+    position: relative;
+  }
+  
+  .pageTitle {
+    text-align: center;
+    margin-bottom: 4rem;
+    color: var(--color-highlight);
+  }
+  
+  /* Storyline Styles */
+  .storyline {
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto 5rem auto;
+    padding: 2rem 0;
+  }
+  
+  .timelineLine {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: linear-gradient(to bottom, rgba(255,255,255,0.1), var(--color-primary), rgba(255,255,255,0.1));
+    transform: translateX(-50%);
+    z-index: 0;
+     border-radius: 3px;
+  }
+  
+  .storySection {
+    position: relative;
+    margin-bottom: 4rem;
+    width: 50%;
+    padding: 1rem 2rem;
+    box-sizing: border-box;
+     z-index: 1;
+  }
+  
+  .storySection:last-child {
+      margin-bottom: 0;
+  }
+  
+  .alignLeft {
+    left: 0;
+     text-align: right;
+     padding-right: 3rem; /* Space from line */
+  }
+  .alignRight {
+    left: 50%;
+     text-align: left;
+     padding-left: 3rem; /* Space from line */
+  }
+  
+  .timelineDot {
+    content: '';
+    position: absolute;
+    top: 1rem; /* Align with heading */
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: var(--gradient-secondary);
+    border: 3px solid var(--color-background);
+    box-shadow: 0 0 10px var(--color-secondary);
+     z-index: 2;
+     transform: scale(0); /* Start hidden for GSAP */
+     opacity: 0;
+     will-change: transform, opacity;
+  }
+  .alignLeft .timelineDot { right: -8px; transform: translateX(50%); } /* Center on line */
+  .alignRight .timelineDot { left: -8px; transform: translateX(-50%); } /* Center on line */
+  
+  .timelineContent {
+    background: rgba(25, 25, 25, 0.7);
+    padding: 1.5rem;
+    border-radius: var(--border-radius);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+     opacity: 0; /* Start hidden for GSAP */
+     will-change: transform, opacity;
+  }
+  .alignLeft .timelineContent { transform: translateX(-10px); }
+  .alignRight .timelineContent { transform: translateX(10px); }
+  
+  
+  .timelineHeading {
+    color: var(--color-primary);
+    margin-bottom: 0.5rem;
+    font-size: 1.4rem;
+  }
+  .timelineContent p {
+    font-size: 1rem;
+    line-height: 1.6;
+    opacity: 0.9;
+  }
+  
+  
+  .chefGrid {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr; /* Image | Bio */
+      gap: clamp(2rem, 6vw, 4rem);
+      align-items: center;
+  }
+  
+  .chefImage {
+      position: relative;
+      border-radius: var(--border-radius);
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0,0,0, 0.2);
+  }
+  .chefImage img {
+      display: block;
+      width: 100%;
+      height: auto;
+      aspect-ratio: 3 / 4;
+      object-fit: cover;
+  }
+  .imageGlow { /* Add a subtle glow effect */
+      position: absolute;
+      inset: -5px;
+      border-radius: inherit;
+      background: radial-gradient(ellipse at center, rgba(var(--color-highlight-rgb, 255, 215, 0), 0.15) 0%, transparent 70%);
+      filter: blur(10px);
+      z-index: -1;
+      opacity: 0.8;
+      pointer-events: none;
+  }
+  
+  .chefBio h2 { color: var(--color-accent); margin-bottom: 1.5rem; }
+  .chefBio p { margin-bottom: 1rem; line-height: 1.7; font-size: 1.05rem; opacity: 0.9;}
+  
+   /* Philosophy Section */
+  .philosophySection {
+      text-align: center;
+      max-width: 800px;
+      margin: 4rem auto 0 auto;
+  }
+  .philosophySection h2 { color: var(--color-secondary); margin-bottom: 1.5rem; }
+  .philosophySection p { font-size: 1.1rem; line-height: 1.7; opacity: 0.9; margin-bottom: 2rem; }
+   .philosophyImage {
+      border-radius: var(--border-radius);
+      overflow: hidden;
+      margin-bottom: 2rem;
+      box-shadow: 0 8px 25px rgba(0,0,0, 0.15);
+   }
+   .philosophyImage img {
+       aspect-ratio: 200 / 50;
+       object-fit: cover;
+       width: 100%;
+   }
+  
+  
+  /* Responsive Adjustments */
+  @media (max-width: 768px) {
+    .timelineLine { left: 15px; transform: none; } /* Move line to left */
+    .storySection { width: 100%; left: 0 !important; padding-left: 3rem; padding-right: 1rem; text-align: left !important; }
+    .timelineDot { left: 15px !important; transform: translateX(-50%) !important; } /* Center on left line */
+  
+    .chefGrid {
+        grid-template-columns: 1fr; /* Stack */
+        text-align: center;
+    }
+    .chefImage { order: -1; max-width: 70%; margin: 0 auto 2rem auto;} /* Image first, smaller */
+  }

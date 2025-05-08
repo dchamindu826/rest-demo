@@ -1,0 +1,69 @@
+/* src/components/UI/MenuItemCard.module.css */
+.menuItemCard {
+    background: rgba(20, 20, 20, 0.6); /* Darker base */
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    position: relative;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    transition: box-shadow 0.4s ease;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    opacity: 0; /* Start hidden for GSAP animation */
+     will-change: transform, opacity;
+  }
+  
+  .menuItemCard:hover {
+      box-shadow: 0 10px 30px rgba(var(--color-primary-rgb, 219, 0, 255), 0.15); /* Use primary color */
+  }
+  
+  
+  .imageWrapper {
+      position: relative;
+      overflow: hidden;
+       aspect-ratio: 16 / 9; /* Maintain aspect ratio */
+  }
+  
+  .itemImage {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1); /* Smooth zoom */
+      /* GSAP controls scale now */
+  }
+  
+  .priceTag {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      background: var(--gradient-primary);
+      color: var(--color-background);
+      padding: 0.4rem 0.8rem;
+      border-radius: 20px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      font-family: var(--font-display);
+      box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+      z-index: 2;
+  }
+  
+  .itemContent {
+      padding: 1.5rem;
+      background-color: rgba(20, 20, 20, 0.5); /* Slightly transparent */
+      transition: background-color 0.4s ease; /* Animated by GSAP */
+      position: relative;
+      z-index: 1;
+  }
+  
+  .itemName {
+      font-size: clamp(1.3rem, 3vw, 1.6rem);
+      color: var(--color-highlight);
+      margin-bottom: 0.5rem;
+      font-weight: 700;
+  }
+  
+  .itemDescription {
+      font-size: 0.95rem;
+      line-height: 1.5;
+      color: var(--color-text);
+      opacity: 0.85;
+  }
